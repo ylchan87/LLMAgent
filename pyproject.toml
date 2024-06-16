@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LLMAgent"
+version = "0.1"
+dependencies = [
+  'llama-cpp-python',
+]
+
+[project.optional-dependencies]
+tests = [
+  'nose',
+  'pinocchio',
+  'coverage',
+]
+
+all = ['LLMAgent[test]']
+
+[tool.setuptools.packages]
+find = {}  # Scan the project directory with the default parameters

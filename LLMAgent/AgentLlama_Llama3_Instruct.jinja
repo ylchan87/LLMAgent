@@ -1,0 +1,46 @@
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+{# character_description: eg. You are a helpful AI assistant. #}
+{{ character_description }}
+
+{# instruction on final message #}
+You response to user query must end in a single message with the following format:
+
+message:
+<message>
+
+{# instruction on internal foughts #}
+{% if use_internal_reasoning %}
+Before the message, you could note down zero or more internal thoughts, with the following format:
+
+internal reasoning:
+<internal reasoning>
+
+{% endif %}
+
+{# instruction on function call #}
+{% if function_specs|length > 0 %}
+Before the message, you could make zero or more function calls to help with your tasks. Functions are called with the following format:
+
+functions.<function_name>:
+{ "arg1": "value1", "arg2": "value2" }
+
+the function would then reply in following format:
+
+reply.<function_name>:
+{ "arg1": "value1", "arg2": "value2" }
+
+You only have access to the following functions:
+
+{% for function_spec in function_specs %}
+{{ function_spec | tojson }}
+{% endfor %}
+
+Use reply from function calls whenever they are applicable.
+
+{% endif %}
+
+Think step by step and reply the user's query.
+
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+{{ user_query }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
