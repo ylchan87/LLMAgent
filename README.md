@@ -6,9 +6,11 @@ A simple LLM agent that can call functions to help with its task.
 - Funcs are called and results are fed back to LLM, all automatically without human in the loop
 
 # Install
+```
 git clone https://github.com/ylchan87/LLMAgent.git
 cd LLMAgent
 python3 -m pip install -e .
+```
 
 # Run
 ```
